@@ -41,14 +41,14 @@ import discord
 
 bot = discord.Bot() # Create a bot object
 
-class View(discord.ui.View): # Create a class called View that subclasses discord.ui.View
+class MyView(discord.ui.View): # Create a class called View that subclasses discord.ui.View
     @discord.ui.button(label="Click me!", style=discord.ButtonStyle.primary, emoji="😎") # Create a button with the label "😎 Click me!" with color Blurple
     async def button_callback(self, button, interaction):
         await interaction.response.send_message("You clicked the button!") # Send a message when the button is clicked
 
 @bot.slash_command() # Create a slash command
 async def button(ctx):
-    await ctx.respond("This is a button!", view=View()) # Send a message with our View class that contains the button
+    await ctx.respond("This is a button!", view=MyView()) # Send a message with our View class that contains the button
 
 bot.run("TOKEN") # Run the bot
 ```
@@ -107,7 +107,7 @@ Check out the [`discord.ButtonStyle`](https://docs.pycord.dev/en/master/api.html
 
 You can set a button's style by adding the `style` argument in the [`discord.ui.button`](https://docs.pycord.dev/en/master/api.html#discord.ui.button) decorator.
 
-```python 
+```python
 class View(discord.ui.View):
     @discord.ui.button(label="Click me!", style=discord.ButtonStyle.success)
     async def button_callback(self, button, interaction):
@@ -235,7 +235,7 @@ class MyView(discord.ui.View):
 </Tabs>
 
 Here, we loop through all the children of the view (buttons and select menus in the view) and disable
-them. Then, we edit the message to show that the timeout was reached. 
+them. Then, we edit the message to show that the timeout was reached.
 
 :::note
 
